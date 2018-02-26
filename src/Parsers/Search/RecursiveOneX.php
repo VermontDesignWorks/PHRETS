@@ -81,6 +81,10 @@ class RecursiveOneX
         $bigFirst = $big->first();
         $smallFirst = $small->first();
 
-        return $bigFirst && $smallFirst && ($bigFirst->toArray() == $smallFirst()->toArray());
+        return (
+            ($bigFirst !== null)
+            && ($smallFirst !== null)
+            && ($bigFirst->toArray() == $smallFirst()->toArray())
+        );
     }
 }
