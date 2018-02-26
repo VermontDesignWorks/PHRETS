@@ -84,7 +84,7 @@ class RecursiveOneX
         return (
             ($bigFirst !== null)
             && ($smallFirst !== null)
-            && ($bigFirst->toArray() == $smallFirst()->toArray())
+            && ($bigFirst->toArray() == $smallFirst->toArray())
         );
     }
 }
