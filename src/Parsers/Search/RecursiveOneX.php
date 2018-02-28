@@ -33,6 +33,11 @@ class RecursiveOneX
 
             /** @var Results $inner_rs */
             $inner_rs = $rets->Search($resource, $class, $query, $pms, false);
+
+            if ($inner_rs->count() === 0) {
+                break;
+            }
+
             $rs->setTotalResultsCount($inner_rs->getTotalResultsCount());
             $rs->setMaxRowsReached($inner_rs->isMaxRowsReached());
 
@@ -78,13 +83,6 @@ class RecursiveOneX
      */
     protected function isPaginationBroken(Results $big, Results $small)
     {
-        $bigFirst = $big->first();
-        $smallFirst = $small->first();
-
-        return (
-            ($bigFirst !== null)
-            && ($smallFirst !== null)
-            && ($bigFirst->toArray() == $smallFirst->toArray())
-        );
+        return $big->first()->toArray() == $small->first()->toArray();
     }
 }
